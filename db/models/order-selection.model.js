@@ -1,11 +1,11 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const { ORDER_TABLE } = require('./order.model');
-const { PRODUCT_TABLE } = require('./product.model');
+const { SELECTION_TABLE } = require('./selection.model');
 
-const ORDER_PRODUCT_TABLE = 'orders_products';
+const ORDER_SELECTION_TABLE = 'orders_selection';
 
-const OrderProductSchema = {
+const OrderSelectionSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -33,12 +33,12 @@ const OrderProductSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  productsId: {
-    field: 'products_id',
+  selectionId: {
+    field: 'selection_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: PRODUCT_TABLE,
+      model: SELECTION_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
@@ -46,7 +46,7 @@ const OrderProductSchema = {
   }
 }
 
-class OrderProduct extends Model {
+class OrderSelection extends Model {
 
   static associate(models) {
     //
@@ -55,11 +55,11 @@ class OrderProduct extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: ORDER_PRODUCT_TABLE,
-      modelName: 'OrderProduct',
+      tableName: ORDER_SELECTION_TABLE,
+      modelName: 'OrderSelection',
       timestamps: false
     }
   }
 }
 
-module.exports = { OrderProduct, OrderProductSchema, ORDER_PRODUCT_TABLE };
+module.exports = { OrderSelection, OrderSelectionSchema, ORDER_SELECTION_TABLE };

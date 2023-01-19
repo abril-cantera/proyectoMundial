@@ -18,7 +18,7 @@ class GroupService {
 
   async findOne(id) {
     const group = await models.Group.findByPk(id, {
-      include: ['products']
+      include: ['selection']
     });
     return group;
   }

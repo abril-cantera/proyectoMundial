@@ -13,41 +13,32 @@ class OrderService {
   }
 
   async addItem(data) {
-    const newItem = await models.OrderProduct.create(data);
+    const newItem = await models.OrderSelection.create(data);
     return newItem;
   }
 
-  // async findByUser(userId) {
-  //   const orders = await models.Order.findAll({
-  //     where: {
-  //       '$customer.user.id$': userId
-  //     },
-  //     include: [
-  //       {
-  //         association: 'customer',
-  //         include: ['user']
-  //       }
-  //     ]
-  //   });
-  //   return orders;
-  // }
 
   async find() {
-    return [];
+    const options = {
+      include: ['selection'],
+      where: {}
+    }
+    const match = await models.Group.findAll(options);
+    return match;
   }
 
-  // async findOne(id) {
-  //   const order = await models.Order.findByPk(id, {
-  //     include: [
-  //       {
-  //         association: 'customer',
-  //         include: ['user']
-  //       },
-  //       'items'
-  //     ]
-  //   });
-  //   return order;
-  // }
+  async findOne(id) {
+    const order = await models.Order.findByPk(id, {
+      include: [
+        // {
+        //   association: 'group',
+        //   include: ['selection']
+        // },
+        'items'
+      ]
+    });
+    return order;
+  }
 
   async update(id, changes) {
     return {

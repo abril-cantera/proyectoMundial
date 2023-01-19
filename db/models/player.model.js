@@ -1,17 +1,17 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const { GROUP_TABLE } = require('./group.model');
+const { SELECTION_TABLE } = require('./selection.model')
 
-const PRODUCT_TABLE = 'products';
+const PLAYER_TABLE = 'player';
 
-const ProductSchema = {
+const PlayerSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  name: {
+  namePlayer: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -23,48 +23,47 @@ const ProductSchema = {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  price: {
+  position: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  number: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  createdAt: {
-    allowNull: false,
-    type: DataTypes.DATE,
-    field: 'created_at',
-    defaultValue: Sequelize.NOW,
-  },
-  groupId: {
-    field: 'group_id',
+  selectionId: {
+    field: 'selection_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: GROUP_TABLE,
+      model: SELECTION_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
+  },
+  createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'create_at',
+    defaultValue: Sequelize.NOW
   }
 }
 
-
-class Product extends Model {
-
+class Player extends Model {
   static associate(models) {
-    this.belongsTo(models.Group, { as: 'group' });
-    this.hasMany(models.User, {
-      as: 'users',
-      foreignKey: 'productsId'
-    });
+    this.belongsTo(models.Selection, { as: 'selection' });
   }
 
   static config(sequelize) {
     return {
       sequelize,
-      tableName: PRODUCT_TABLE,
-      modelName: 'Product',
+      tableName: PLAYER_TABLE,
+      modelName: 'Player',
       timestamps: false
     }
   }
 }
 
-module.exports = { Product, ProductSchema, PRODUCT_TABLE };
+
+module.exports = { PLAYER_TABLE, PlayerSchema, Player }

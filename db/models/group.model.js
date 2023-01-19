@@ -20,8 +20,8 @@ const GroupSchema = {
 class Group extends Model {
 
   static associate(models) {
-    this.hasMany(models.Product, {
-      as: 'products',
+    this.hasMany(models.Selection, {
+      as: 'selection',
       foreignKey: 'groupId'
     });
     this.hasMany(models.Order, {

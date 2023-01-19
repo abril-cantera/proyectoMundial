@@ -1,10 +1,10 @@
 'use strict';
 
 const { GROUP_TABLE } = require('./../models/group.model');
-const { PRODUCT_TABLE } = require('./../models/product.model');
-const { USER_TABLE } = require('./../models/user.model');
+const { SELECTION_TABLE } = require('./../models/selection.model');
+const { PLAYER_TABLE } = require('./../models/player.model');
 const { ORDER_TABLE } = require('./../models/order.model');
-const { ORDER_PRODUCT_TABLE } = require('./../models/order-product.model');
+const { ORDER_SELECTION_TABLE } = require('./../models/order-selection.model');
 
 
 module.exports = {
@@ -22,34 +22,20 @@ module.exports = {
         allowNull: false,
       },
     });
-    await queryInterface.createTable(PRODUCT_TABLE, {
+    await queryInterface.createTable(SELECTION_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
-      name: {
+      nameEquipment: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
       image: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
-      },
-      description: {
-        type: Sequelize.DataTypes.TEXT,
-        allowNull: false,
-      },
-      price: {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
       },
       groupId: {
         field: 'group_id',
@@ -63,7 +49,7 @@ module.exports = {
         onDelete: 'SET NULL'
       }
     });
-    await queryInterface.createTable(USER_TABLE, {
+    await queryInterface.createTable(PLAYER_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -90,12 +76,12 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
       },
-      productsId: {
-        field: 'products_id',
+      selectionId: {
+        field: 'selection_id',
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: PRODUCT_TABLE,
+          model: SELECTION_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -133,7 +119,7 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
     });
-    await queryInterface.createTable(ORDER_PRODUCT_TABLE, {
+    await queryInterface.createTable(ORDER_SELECTION_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -161,12 +147,12 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      producstId: {
-        field: 'products_id',
+      selectionId: {
+        field: 'selection_id',
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: PRODUCT_TABLE,
+          model: SELECTION_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -177,10 +163,10 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable(ORDER_PRODUCT_TABLE);
+    await queryInterface.dropTable(ORDER_SELECTION_TABLE);
     await queryInterface.dropTable(ORDER_TABLE);
-    await queryInterface.dropTable(PRODUCT_TABLE);
+    await queryInterface.dropTable(SELECTION_TABLE);
     await queryInterface.dropTable(GROUP_TABLE);
-    await queryInterface.dropTable(USER_TABLE);
+    await queryInterface.dropTable(PLAYER_TABLE);
   }
 };

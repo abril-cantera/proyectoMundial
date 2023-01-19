@@ -1,28 +1,28 @@
 const express = require('express');
 
-const UserService = require('./../services/user.service');
-const validatorHandler = require('./../middlewares/validator.handler');
-const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema');
+const PlayerService = require('./../services/player.service');
+const validatorHandler = require('../middlewares/validator.handler');
+const { updatePlayerSchema, createPlayerSchema, getPlayerSchema } = require('./../schemas/player.schema');
 
 const router = express.Router();
-const service = new UserService();
+const service = new PlayerService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await service.find();
-    res.json(users);
+    const players = await service.find();
+    res.json(players);
   } catch (error) {
     next(error);
   }
 });
 
 router.get('/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getPlayerSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const users = await service.findOne(id);
-      res.json(users);
+      const players = await service.findOne(id);
+      res.json(players);
     } catch (error) {
       next(error);
     }
@@ -30,12 +30,12 @@ router.get('/:id',
 );
 
 router.post('/',
-  validatorHandler(createUserSchema, 'body'),
+  validatorHandler(createPlayerSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newUser = await service.create(body);
-      res.status(201).json(newUser);
+      const newPlayer = await service.create(body);
+      res.status(201).json(newPlayer);
     } catch (error) {
       next(error);
     }
@@ -43,14 +43,14 @@ router.post('/',
 );
 
 router.patch('/:id',
-  validatorHandler(getUserSchema, 'params'),
-  validatorHandler(updateUserSchema, 'body'),
+  validatorHandler(getPlayerSchema, 'params'),
+  validatorHandler(updatePlayerSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
-      const users = await service.update(id, body);
-      res.json(users);
+      const players = await service.update(id, body);
+      res.json(players);
     } catch (error) {
       next(error);
     }
@@ -58,7 +58,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getPlayerSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

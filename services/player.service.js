@@ -26,11 +26,16 @@ class PlayerService {
 
   async findOne(id) {
     const player = await models.Player.findByPk(id);
-    if (!player) {
-      throw boom.notFound('player not found');
-    }
     return player;
   }
+
+  // async findOne(id) {
+  //   const player = await models.Player.findByPk(id);
+  //   if (!player) {
+  //     throw boom.notFound('player not found');
+  //   }
+  //   return player;
+  // }
 
   async update(id, changes) {
     const player = await this.findOne(id);

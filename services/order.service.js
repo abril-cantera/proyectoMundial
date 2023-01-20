@@ -30,10 +30,6 @@ class OrderService {
   async findOne(id) {
     const order = await models.Order.findByPk(id, {
       include: [
-        // {
-        //   association: 'group',
-        //   include: ['selection']
-        // },
         'items'
       ]
     });
@@ -48,6 +44,8 @@ class OrderService {
   }
 
   async delete(id) {
+    const match = await this.findOne(id);
+    await match.destroy();
     return { id };
   }
 

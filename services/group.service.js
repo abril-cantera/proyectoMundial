@@ -31,6 +31,8 @@ class GroupService {
   }
 
   async delete(id) {
+    const group = await this.findOne(id);
+    await group.destroy();
     return { id };
   }
 

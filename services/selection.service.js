@@ -27,15 +27,10 @@ class SelectionService {
   }
 
   async findOne(id) {
-    const selection = this.selection.find(item => item.id === id);
-    if (!selection) {
-      throw boom.notFound('selection not found');
-    }
-    if (selection.isBlock) {
-      throw boom.conflict('selection is block');
-    }
+    const selection = await models.Selection.findByPk(id);
     return selection;
   }
+
 
   async update(id, changes) {
     const index = this.selection.findIndex(item => item.id === id);
@@ -51,11 +46,8 @@ class SelectionService {
   }
 
   async delete(id) {
-    const index = this.selection.findIndex(item => item.id === id);
-    if (index === -1) {
-      throw boom.notFound('selection not found');
-    }
-    this.selection.splice(index, 1);
+    const selection = await this.findOne(id);
+    await selection.destroy();
     return { id };
   }
 

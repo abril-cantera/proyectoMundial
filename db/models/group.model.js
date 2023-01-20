@@ -24,8 +24,8 @@ class Group extends Model {
       as: 'selection',
       foreignKey: 'groupId'
     });
-    this.hasMany(models.Order, {
-      as: 'orders',
+    this.hasMany(models.Match, {
+      as: 'match',
       foreignKey: 'groupId'
     });
   }

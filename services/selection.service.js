@@ -26,11 +26,14 @@ class SelectionService {
     return selection;
   }
 
+
+
   async findOne(id) {
-    const selection = await models.Selection.findByPk(id);
+    const selection = await models.Selection.findByPk(id, {
+      include: ['player']
+    });
     return selection;
   }
-
 
   async update(id, changes) {
     const index = this.selection.findIndex(item => item.id === id);

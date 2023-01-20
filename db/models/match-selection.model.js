@@ -1,11 +1,11 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const { ORDER_TABLE } = require('./order.model');
+const { MATCH_TABLE } = require('./match.model');
 const { SELECTION_TABLE } = require('./selection.model');
 
-const ORDER_SELECTION_TABLE = 'orders_selection';
+const MATCH_SELECTION_TABLE = 'match_selection';
 
-const OrderSelectionSchema = {
+const MatchSelectionSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -18,16 +18,16 @@ const OrderSelectionSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  amount: {
+  goles: {
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  orderId: {
-    field: 'order_id',
+  matchId: {
+    field: 'match_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: ORDER_TABLE,
+      model: MATCH_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
@@ -46,7 +46,7 @@ const OrderSelectionSchema = {
   }
 }
 
-class OrderSelection extends Model {
+class MatchSelection extends Model {
 
   static associate(models) {
     //
@@ -55,11 +55,11 @@ class OrderSelection extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: ORDER_SELECTION_TABLE,
-      modelName: 'OrderSelection',
+      tableName: MATCH_SELECTION_TABLE,
+      modelName: 'MatchSelection',
       timestamps: false
     }
   }
 }
 
-module.exports = { OrderSelection, OrderSelectionSchema, ORDER_SELECTION_TABLE };
+module.exports = { MatchSelection, MatchSelectionSchema, MATCH_SELECTION_TABLE };

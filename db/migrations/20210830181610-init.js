@@ -3,8 +3,8 @@
 const { GROUP_TABLE } = require('./../models/group.model');
 const { SELECTION_TABLE } = require('./../models/selection.model');
 const { PLAYER_TABLE } = require('./../models/player.model');
-const { ORDER_TABLE } = require('./../models/order.model');
-const { ORDER_SELECTION_TABLE } = require('./../models/order-selection.model');
+const { MATCH_TABLE } = require('./../models/match.model');
+const { MATCH_SELECTION_TABLE } = require('./../models/match-selection.model');
 
 
 module.exports = {
@@ -94,7 +94,7 @@ module.exports = {
         defaultValue: Sequelize.NOW
       }
     });
-    await queryInterface.createTable(ORDER_TABLE, {
+    await queryInterface.createTable(MATCH_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -119,7 +119,7 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
     });
-    await queryInterface.createTable(ORDER_SELECTION_TABLE, {
+    await queryInterface.createTable(MATCH_SELECTION_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -132,16 +132,16 @@ module.exports = {
         field: 'created_at',
         defaultValue: Sequelize.NOW,
       },
-      amount: {
+      goles: {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER
       },
-      orderId: {
-        field: 'order_id',
+      matchId: {
+        field: 'match_id',
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         references: {
-          model: ORDER_TABLE,
+          model: MATCH_TABLE,
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -163,8 +163,8 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable(ORDER_SELECTION_TABLE);
-    await queryInterface.dropTable(ORDER_TABLE);
+    await queryInterface.dropTable(MATCH_SELECTION_TABLE);
+    await queryInterface.dropTable(MATCH_TABLE);
     await queryInterface.dropTable(SELECTION_TABLE);
     await queryInterface.dropTable(GROUP_TABLE);
     await queryInterface.dropTable(PLAYER_TABLE);

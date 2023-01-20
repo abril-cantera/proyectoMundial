@@ -1,21 +1,22 @@
 const express = require('express');
 
-const OrderService = require('../services/order.service');
+const MatchService = require('../services/match.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const {
-  getOrderSchema,
-  createOrderSchema,
-  addItemSchema
-} = require('../schemas/order.schema');
+  getMatchSchema,
+  createMatchSchema,
+  addItemSchema,
+  // removeItemSchema
+} = require('../schemas/match.schema');
 
 const router = express.Router();
-const service = new OrderService();
+const service = new MatchService();
 
 router.get('/',
   async (req, res, next) => {
     try {
-      const orders = await service.find();
-      res.json(orders);
+      const match = await service.find();
+      res.json(match);
     } catch (error) {
       next(error);
     }
@@ -23,26 +24,27 @@ router.get('/',
 
 router.get(
   '/:id',
-  validatorHandler(getOrderSchema, 'params'),
+  validatorHandler(getMatchSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const order = await service.findOne(id);
-      res.json(order);
+      const match = await service.findOne(id);
+      res.json(match);
     } catch (error) {
       next(error);
     }
   }
 );
 
+
 router.post(
   '/',
-  validatorHandler(createOrderSchema, 'body'),
+  validatorHandler(createMatchSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newOrder = await service.create(body);
-      res.status(201).json(newOrder);
+      const newMatch = await service.create(body);
+      res.status(201).json(newMatch);
     } catch (error) {
       next(error);
     }
@@ -63,9 +65,22 @@ router.post(
   }
 );
 
+router.delete('/:id',
+  validatorHandler(getMatchSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      await service.delete(id);
+      res.status(201).json({ id });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 
 router.delete('/:id',
-  validatorHandler(getOrderSchema, 'params'),
+  validatorHandler(getMatchSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

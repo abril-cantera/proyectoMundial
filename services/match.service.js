@@ -1,22 +1,27 @@
 const boom = require('@hapi/boom');
 
-const { models } = require('./../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
-class OrderService {
+class MatchService {
 
   constructor() {
   }
 
   async create(data) {
-    const newOrder = await models.Order.create(data);
-    return newOrder;
+    const newMatch = await models.Match.create(data);
+    return newMatch;
   }
 
   async addItem(data) {
-    const newItem = await models.OrderSelection.create(data);
+    const newItem = await models.MatchSelection.create(data);
     return newItem;
   }
 
+
+  // async removeItem(id) {
+  //   const Item = await models.MatchSelection.findOne(id);
+  //   return Item;
+  // }
 
   async find() {
     const options = {
@@ -28,12 +33,12 @@ class OrderService {
   }
 
   async findOne(id) {
-    const order = await models.Order.findByPk(id, {
+    const match = await models.Match.findByPk(id, {
       include: [
         'items'
       ]
     });
-    return order;
+    return match;
   }
 
   async update(id, changes) {
@@ -43,6 +48,12 @@ class OrderService {
     };
   }
 
+  // async delete(id) {
+  //   const orders = await this.Order.filter((item) => item.id === id)
+  //   await orders.destroy();
+  //   return { id };
+  // }
+
   async delete(id) {
     const match = await this.findOne(id);
     await match.destroy();
@@ -51,4 +62,4 @@ class OrderService {
 
 }
 
-module.exports = OrderService;
+module.exports = MatchService;

@@ -1,9 +1,9 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { GROUP_TABLE } = require('./group.model');
 
-const ORDER_TABLE = 'orders';
+const MATCH_TABLE = 'match';
 
-const OrderSchema = {
+const MatchSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -30,7 +30,7 @@ const OrderSchema = {
 }
 
 
-class Order extends Model {
+class Match extends Model {
 
   static associate(models) {
     this.belongsTo(models.Group, {
@@ -38,8 +38,8 @@ class Order extends Model {
     });
     this.belongsToMany(models.Selection, {
       as: 'items',
-      through: models.OrderSelection,
-      foreignKey: 'orderId',
+      through: models.MatchSelection,
+      foreignKey: 'matchId',
       otherKey: 'selectionId'
     });
   }
@@ -47,11 +47,11 @@ class Order extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: ORDER_TABLE,
-      modelName: 'Order',
+      tableName: MATCH_TABLE,
+      modelName: 'Match',
       timestamps: false
     }
   }
 }
 
-module.exports = { Order, OrderSchema, ORDER_TABLE };
+module.exports = { Match, MatchSchema, MATCH_TABLE };

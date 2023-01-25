@@ -7,10 +7,6 @@ async function getSelection() {
   const response = await fetch("http://localhost:5000/api/v1/selection");
   let data = await response.json();
 
-
-
-
-
   for (let i = 0; i < data.length; i++) {
     const containerPrincipal = document.getElementById('containerPrincipal');
     containerPrincipal.classList.toggle('inactive');
@@ -30,12 +26,15 @@ async function getSelection() {
     containerPrincipal.append(div);
 
   }
-
-
-
-
-
   console.log(data);
 };
+
+
+
+
+
+
+
+
 
 getSelection();

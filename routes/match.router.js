@@ -6,7 +6,6 @@ const {
   getMatchSchema,
   createMatchSchema,
   addItemSchema,
-  // removeItemSchema
 } = require('../schemas/match.schema');
 
 const router = express.Router();

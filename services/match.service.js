@@ -18,17 +18,12 @@ class MatchService {
   }
 
 
-  // async removeItem(id) {
-  //   const Item = await models.MatchSelection.findOne(id);
-  //   return Item;
-  // }
-
   async find() {
     const options = {
-      include: ['selection'],
+      include: ['group'],
       where: {}
     }
-    const match = await models.Group.findAll(options);
+    const match = await models.Match.findAll(options);
     return match;
   }
 
@@ -48,11 +43,6 @@ class MatchService {
     };
   }
 
-  // async delete(id) {
-  //   const orders = await this.Order.filter((item) => item.id === id)
-  //   await orders.destroy();
-  //   return { id };
-  // }
 
   async delete(id) {
     const match = await this.findOne(id);

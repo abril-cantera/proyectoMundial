@@ -4,7 +4,7 @@ const id = Joi.number().integer();
 const groupId = Joi.number().integer();
 const matchId = Joi.number().integer();
 const selectionId = Joi.number().integer();
-const goles = Joi.number().integer().min(1);
+const goles = Joi.number().integer();
 
 const getMatchSchema = Joi.object({
   id: id.required(),

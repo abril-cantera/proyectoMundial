@@ -4,7 +4,7 @@
 
 
 async function getSelection() {
-  const response = await fetch("http://localhost:5000/api/v1/selection");
+  const response = await fetch("http://localhost:3000/api/v1/selection");
   let data = await response.json();
 
   const clickSelection = document.getElementById('clickSelection')

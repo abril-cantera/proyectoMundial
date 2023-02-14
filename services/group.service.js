@@ -12,7 +12,9 @@ class GroupService {
   }
 
   async find() {
-    const group = await models.Group.findAll();
+    const group = await models.Group.findAll({
+      include: ['selection']
+    });
     return group;
   }
 

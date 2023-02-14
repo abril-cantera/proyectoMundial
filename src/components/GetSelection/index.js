@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import './GetSelection.css'
+
 export function GetSelection() {
-  //Esto se usa para guardar el array que nos viene en data de la api
+
   const [selection, setSelection] = useState([])
-  const url = "http://localhost:3000/api/v1/selection"
+  const url = "http://localhost:5000/api/v1/selection"
 
   const fetchApiSelection = async () => {
     const response = await fetch(url)
@@ -17,13 +18,14 @@ export function GetSelection() {
   }, [])
 
   return (
-    <div>
+    <div id="containerSelection" className="containerSelection">
       <h2>Selection</h2>
-      <div>
+      <div className="conteinerInfoSelection">
         {
-          selection.map((selection) => <div key={selection.id}>
+          selection.map((selection) => <div className="infoSelection" key={selection.id}>
             <h2>{selection.nameEquipment}</h2>
-            <img src={selection.image} alt="" />
+            <img src={selection.image} alt="Logo de la seleccion indicada" />
+            <button>Ver 🔎</button>
           </div>)
         }
       </div>

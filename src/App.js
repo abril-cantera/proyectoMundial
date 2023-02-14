@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css'
-// import { GetSelection } from "./components/GetSelection";
+import { GetGroup } from './components/GetGroup';
 import { NavBar } from './components/NavBar';
+// import { GetMatch } from './components/GetMatch';
 
 
 function App() {
 
   return (
-    <React.Fragment>
+    <>
       <NavBar></NavBar>
-      {/* < GetSelection /> */}
-    </React.Fragment>
+      < GetGroup />
+    </>
   )
 
 }

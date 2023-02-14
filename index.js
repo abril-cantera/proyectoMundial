@@ -5,11 +5,11 @@ const routerApi = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:8080', 'https://myapp.co', 'http://localhost:5500', 'http://localhost:3001'];
+const whitelist = ['http://localhost:8080', 'https://myapp.co', 'http://localhost:5500', 'http://localhost:3001', 'http://localhost:5001'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {

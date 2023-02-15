@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import './GetGroup.css'
+import '../styles.css'
+
 
 export function GetGroup() {
 
@@ -18,14 +19,17 @@ export function GetGroup() {
   }, [])
 
   return (
-    <div id="containerGroup" className="containerGroup">
+    <div id="containerGroup">
       <h2>Group</h2>
-      <div className="conteinerInfoGroup">
+      <div className="conteinerInfo">
         {
-          group.map((item) => <div className="infoGroup" key={item.id}>
+          group.map((item) => <div className="info" key={item.id}>
             <h2>{item.nameGroup}</h2>
-            <h3>{item.selection}</h3>
-
+            <h3>{item.selection.map(item =>
+              <section key={item.id}>
+                <h4>{item.nameEquipment}</h4>
+              </section>
+            )}</h3>
           </div>)
         }
       </div>

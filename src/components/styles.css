@@ -1,17 +1,17 @@
-.containerSelection {
+.container {
   display: none;
 }
-.conteinerInfoSelection {
+.conteinerInfo {
   background-color: #8d1c3d;
   display: flex;
 }
-.infoSelection {
+.info {
   padding: 10px;
   display: flex;
   flex-direction: column;
   place-items: center;
 }
-.conteinerInfoSelection h2 {
+.conteinerInfo h2 {
   color: white;
   font-size: 2rem;
 }

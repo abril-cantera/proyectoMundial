@@ -20,7 +20,7 @@ class MatchService {
 
   async find() {
     const options = {
-      include: ['group'],
+      include: ['group', 'items'],
       where: {}
     }
     const match = await models.Match.findAll(options);

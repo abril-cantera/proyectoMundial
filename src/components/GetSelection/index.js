@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
-import './GetSelection.css'
+import React, { useEffect, useState } from "react"
+import '../../components/styles.css'
+import { Link } from 'react-router-dom'
 
 export function GetSelection() {
 
@@ -17,19 +18,21 @@ export function GetSelection() {
     fetchApiSelection()
   }, [])
 
+
   return (
-    <div id="containerSelection" className="containerSelection">
+    <div id="containerSelection" >
       <h2>Selection</h2>
-      <div className="conteinerInfoSelection">
+      <div className="conteinerInfo">
         {
-          selection.map((selection) => <div className="infoSelection" key={selection.id}>
-            <h2>{selection.nameEquipment}</h2>
-            <img src={selection.image} alt="Logo de la seleccion indicada" />
+          selection.map((selection) => <div className="info" key={selection.id}>
+            <Link to={`${selection.id}`}>
+              {selection.nameEquipment}
+            </Link>
+            {/* <img src={selection.image} alt="Logo de la seleccion indicada" /> */}
             <button>Ver 🔎</button>
           </div>)
         }
       </div>
-
     </div>
   );
 }

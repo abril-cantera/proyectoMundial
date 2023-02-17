@@ -10,7 +10,6 @@ export function GetMatch() {
   const fetchApiMatch = async () => {
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data)
     setMatch(data)
   }
 
@@ -19,16 +18,15 @@ export function GetMatch() {
   }, [])
 
   return (
-    <div id="containerMatch" >
-      <h2>match</h2>
-      <div className="conteinerInfo">
+    <div className="containerPricipal" id="containerMatch" >
+      <div className="containerCard">
         {
           match.map((item) =>
 
-            <div className="info" key={item.id}>
+            <div className="card" key={item.id}>
               <h3>{item.items.map(item =>
 
-                <section key={item.id}>
+                <section className="text" key={item.id}>
                   <p>{item.nameEquipment}</p>
                   <p>{item.MatchSelection.goles}</p>
                 </section>

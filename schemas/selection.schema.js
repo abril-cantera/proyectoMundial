@@ -15,7 +15,7 @@ const createSelectionSchema = Joi.object({
 const updateSelectionSchema = Joi.object({
   nameEquipment: nameEquipment,
   image: image,
-  groupId
+  groupId: groupId,
 });
 
 const getSelectionSchema = Joi.object({

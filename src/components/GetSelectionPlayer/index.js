@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import '../styles.css'
 
 
 export function GetSelectionPlayer() {
   const { id } = useParams()
-  console.log(id)
 
   const [players, setPlayers] = useState([])
 
@@ -24,22 +24,25 @@ export function GetSelectionPlayer() {
 
 
   return (
-    <div id="containerSelection" >
-      <h2>Selection</h2>
-      <div className="conteinerInfo">
-
-        <div className="info" key={players.id}>
-          <h2>{players.nameEquipment}</h2>
-          {/* <img src={players.image} alt="Logo de la seleccion indicada" /> */}
-          <div>
-            <p>
-              {
-                players.map(item => console.log(item.nameEquipment))
-              }
-            </p>
-          </div>
+    <div className='containerPricipal' id="containerSelection" >
+      <div>
+        <div key={players.id}>
+          <section className='titleAndImg'>
+            <h2 className='text'>{players.nameEquipment}</h2>
+            <img className="logo" src={players.image} alt="Logo de la seleccion indicada" />
+          </section>
+          {
+            <section className='containerCard'>
+              {players.player?.map(item =>
+                <section className="card" key={item.id}>
+                  <h4 className='text2'>{item.namePlayer}</h4>
+                  <p className='text3'>{item.position} - {item.number}</p>
+                  <img className="img" src={item.image} alt="Imagen de perfil del jugador" />
+                </section>
+              )}
+            </section>
+          }
         </div>
-
       </div>
     </div>
   );

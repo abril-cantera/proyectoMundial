@@ -10,7 +10,6 @@ export function GetSelection() {
   const fetchApiSelection = async () => {
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data)
     setSelection(data)
   }
 
@@ -20,16 +19,14 @@ export function GetSelection() {
 
 
   return (
-    <div id="containerSelection" >
-      <h2>Selection</h2>
-      <div className="conteinerInfo">
+    <div className="containerPricipal" id="containerSelection" >
+      <div className="containerCard">
         {
-          selection.map((selection) => <div className="info" key={selection.id}>
-            <Link to={`${selection.id}`}>
+          selection.map((selection) => <div className="card" key={selection.id}>
+            <Link to={`${selection.id}`} className='text'>
               {selection.nameEquipment}
             </Link>
-            {/* <img src={selection.image} alt="Logo de la seleccion indicada" /> */}
-            <button>Ver 🔎</button>
+            <img className="img" src={selection.image} alt="Logo de la seleccion indicada" />
           </div>)
         }
       </div>

@@ -7,16 +7,16 @@
 .navSectionImg img {
   width: 200px;
 }
-.navSectionButton button {
-  border: none;
-  border-radius: none;
-  background-color: white;
+.ul {
+  list-style: none;
+  display: flex;
+}
+.items a {
   margin: 0 10px;
   font-family: "Philosopher", sans-serif;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 2.3rem;
 }
-.navSectionButton button:hover {
+.items a:hover {
   cursor: pointer;
-  text-decoration: underline;
 }

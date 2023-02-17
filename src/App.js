@@ -5,10 +5,7 @@ import { Home } from './components/Home/Home';
 import { GetSelection } from './components/GetSelection'
 import { GetGroup } from './components/GetGroup'
 import { GetMatch } from './components/GetMatch'
-
-import './App.css'
 import { GetSelectionPlayer } from './components/GetSelectionPlayer';
-// import { GetPlayer } from './components/GetPlayer';
 
 
 

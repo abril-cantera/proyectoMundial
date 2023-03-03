@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "node index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -55,7 +55,7 @@
     "web-vitals": "^2.1.4"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "eslintConfig": {
     "extends": [

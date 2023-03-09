@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:14
     environment:
-      - POSTGRES_DB=databasemundial
+      - POSTGRES_DB=dbmundial
       - POSTGRES_USER=abril
       - POSTGRES_PASSWORD=45725575
     ports:

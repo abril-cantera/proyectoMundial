@@ -31,7 +31,7 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 
-app.get('/', (req, res) => res.send('Hello Word'))
+app.get('/api/v1/group', (req, res) => res.send('Hello Word'))
 app.listen(port, () => {
   console.log(`Mi port ${port}`);
 });

@@ -8,7 +8,13 @@ export function GetGroup() {
   const url = "https://3.144.244.212:5000/api/v1/group"
 
   const fetchApiGroup = async () => {
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      }
+
+    })
     const data = await response.json()
     setGroup(data)
   }

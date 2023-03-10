@@ -5,7 +5,7 @@ import '../styles.css'
 export function GetMatch() {
 
   const [match, setMatch] = useState([])
-  const url = 'http://18.188.94.82:5000/api/v1/match'
+  const url = 'http://3.144.244.212:5000/api/v1/match'
 
   const fetchApiMatch = async () => {
     const response = await fetch(url)

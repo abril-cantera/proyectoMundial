@@ -41,3 +41,5 @@ class Group extends Model {
 }
 
 module.exports = { Group, GroupSchema, GROUP_TABLE };
+
+

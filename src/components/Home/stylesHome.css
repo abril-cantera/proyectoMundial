@@ -1,0 +1,70 @@
+.containerPricipal {
+  height: 100%;
+  background-color: #8d1c3d;
+  padding: 10px 20px 10px 20px;
+}
+.containerInfoPrincipal {
+  display: flex;
+  flex-direction: column;
+}
+.containerInfo {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 30px 0;
+  align-items: center;
+}
+.infoTitleImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.textHome {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 700;
+  font-size: 8rem;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+.infoImg {
+  display: flex;
+  align-items: center;
+}
+.textHome2 {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
+.logoSelection {
+  height: 20vh;
+}
+.containerImgHome {
+  width: auto;
+  height: auto;
+}
+.imgHome {
+  width: auto;
+  height: auto;
+  border-radius: 10%;
+}
+
+.texto1 {
+  animation: saltos 2.5s alternate infinite ease-in;
+}
+@keyframes saltos {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+  50% {
+    transform: scale(0.8, 0.8);
+  }
+  100% {
+    transform: scale(0.9, 0.9);
+  }
+}
